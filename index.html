@@ -21,14 +21,12 @@
             box-shadow: 0 0 20px #ff4d6d; font-weight: bold;
         }
 
-        /* Countdown Style */
         #countdown {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             font-size: 80px; color: white; display: none; z-index: 101; 
             text-shadow: 0 0 20px #ff4d6d;
         }
 
-        /* Gift Box Container */
         #gift-container {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             z-index: 10; display: none; text-align: center; cursor: pointer; width: 100%;
@@ -36,10 +34,9 @@
 
         .gift-box { font-size: 100px; transition: transform 0.3s; }
 
-        /* Message Styling - Responsive */
         #final-message {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            font-size: 32px; color: #ff8fa3; z-index: 20; text-align: center;
+            font-size: 28px; color: #ff8fa3; z-index: 20; text-align: center;
             text-shadow: 0 0 15px #ff4d6d; width: 90%; line-height: 1.4;
         }
 
@@ -53,12 +50,11 @@
             100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
         }
 
-        /* Media Queries for Desktop */
         @media (min-width: 768px) {
             #start-btn { font-size: 28px; padding: 25px 60px; }
             #countdown { font-size: 150px; }
             .gift-box { font-size: 150px; }
-            #final-message { font-size: 55px; }
+            #final-message { font-size: 50px; }
         }
 
         #canvas-container { position: absolute; top: 0; left: 0; }
@@ -128,11 +124,13 @@
             }, 800);
         }
 
-        // Multiple Message Logic
+        // --- UPDATED MESSAGES ---
         const messages = [
             "I Like You, Prushti ✨",
-            "You are truly special... 😊",
-            "Always keep smiling! ❤️"
+            "You are very special to me... 😊",
+            "You are such a amazing person 🌟",
+            "Thank you so much for coming in my life ❤️",
+            "Always keep smiling! ✨"
         ];
 
         async function showMessages() {
@@ -140,7 +138,7 @@
             for (let text of messages) {
                 element.innerHTML = "";
                 await typeWriter(text, 'final-message');
-                await new Promise(r => setTimeout(r, 2000)); // Wait before next message
+                await new Promise(r => setTimeout(r, 2000));
                 if(text !== messages[messages.length - 1]) {
                     element.style.opacity = "0";
                     await new Promise(r => setTimeout(r, 1000));
