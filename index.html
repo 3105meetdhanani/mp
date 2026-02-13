@@ -35,10 +35,28 @@
         .gift-box { font-size: 100px; transition: transform 0.3s; }
 
         #final-message {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            font-size: 28px; color: #ff8fa3; z-index: 20; text-align: center;
+            position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 24px; color: #ff8fa3; z-index: 20; text-align: center;
             text-shadow: 0 0 15px #ff4d6d; width: 90%; line-height: 1.4;
         }
+
+        /* Question & Buttons Styling */
+        #question-container {
+            position: absolute; top: 65%; left: 50%; transform: translate(-50%, -50%);
+            display: none; flex-direction: column; align-items: center; z-index: 30; width: 100%;
+        }
+
+        #question-text { color: white; font-size: 22px; margin-bottom: 20px; text-shadow: 0 0 10px #ff4d6d; }
+
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+        .opt-btn {
+            padding: 12px 25px; font-size: 18px; border: none; border-radius: 10px;
+            cursor: pointer; background: white; color: #ff4d6d; font-weight: bold;
+            transition: 0.3s; min-width: 100px;
+        }
+
+        #no-btn { position: relative; }
 
         .floating-heart {
             position: absolute; color: #ff4d6d; pointer-events: none;
@@ -54,7 +72,8 @@
             #start-btn { font-size: 28px; padding: 25px 60px; }
             #countdown { font-size: 150px; }
             .gift-box { font-size: 150px; }
-            #final-message { font-size: 50px; }
+            #final-message { font-size: 40px; }
+            #question-text { font-size: 32px; }
         }
 
         #canvas-container { position: absolute; top: 0; left: 0; }
@@ -74,6 +93,16 @@
     </div>
 
     <div id="final-message"></div>
+
+    <div id="question-container">
+        <div id="question-text">Will you accept my love?</div>
+        <div class="options-grid">
+            <button class="opt-btn" onclick="celebrate()"> (A) Yes </button>
+            <button class="opt-btn" id="no-btn" onmouseover="moveNo()"> (B) No </button>
+            <button class="opt-btn" onclick="celebrate()"> (C) A </button>
+            <button class="opt-btn" onclick="showConfused()"> (D) Confused </button>
+        </div>
+    </div>
 
     <div id="canvas-container"></div>
 
@@ -124,7 +153,6 @@
             }, 800);
         }
 
-        // --- UPDATED MESSAGES ---
         const messages = [
             "I Like You, Prushti ✨",
             "You are very special to me... 😊",
@@ -145,6 +173,8 @@
                     element.style.opacity = "1";
                 }
             }
+            // Show the question after last message
+            document.getElementById('question-container').style.display = 'flex';
         }
 
         function typeWriter(text, elementId) {
@@ -200,6 +230,25 @@
                 renderer.setSize(window.innerWidth, window.innerHeight);
             }
         });
+
+        // Global functions for buttons
+        window.moveNo = function() {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 100);
+            const noBtn = document.getElementById('no-btn');
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        };
+
+        window.celebrate = function() {
+            alert("I knew it! ❤️ Love you Prushti!");
+            confetti({ particleCount: 300, spread: 100, origin: { y: 0.6 } });
+        };
+
+        window.showConfused = function() {
+            alert("Don't be confused... Just click 'A' or 'Yes'! 😉");
+        };
     </script>
 </body>
 </html>
