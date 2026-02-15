@@ -241,13 +241,28 @@
             noBtn.style.top = y + 'px';
         };
 
-        window.celebrate = function() {
+        window.celebrate = function(answer) {
+    const GOOGLE_SHEET_URL = "તમારી_કોપી_કરેલી_લિંક_અહીં_પેસ્ટ_કરો";
+
+    fetch(GOOGLE_SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+            Prushti_Answer: answer,
+            Time: new Date().toLocaleString()
+        })
+    });
+
+    alert("I knew it! ❤️ Love you Prushti!");
+    confetti({ particleCount: 300, spread: 100, origin: { y: 0.6 } });
+};
             alert("I knew it! ❤️ Love you Prushti!");
             confetti({ particleCount: 300, spread: 100, origin: { y: 0.6 } });
         };
 
         window.showConfused = function() {
-            alert("Don't be confused... Just click 'A' or 'Yes'! 😉");
+            fetch("Don't be confused... Just click 'A' or 'Yes'! 😉");
         };
     </script>
 </body>
